@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAVETYPEWEB | Futuristic Web Agency</title>
+    <meta name="description" content="WAVETYPEWEB builds premium futuristic websites for businesses, creators, and startups.">
+    <link rel="icon" type="image/png" href="./assets/wavetypeweb-logo.png">
+    <link rel="preload" as="image" href="./assets/wavetypeweb-logo.png" fetchpriority="high">
+    <link rel="stylesheet" href="./styles.css?v=full-screen-logo-redesign">
+</head>
+<style>
+:root {
+    --black: #03040a;
+    --navy: #070a18;
+    --navy-2: #0b1030;
+    --panel: rgba(255, 255, 255, 0.08);
+    --panel-strong: rgba(255, 255, 255, 0.13);
+    --line: rgba(255, 255, 255, 0.14);
+    --line-strong: rgba(115, 155, 255, 0.34);
+    --text: #f8fbff;
+    --text-soft: #c9d5ff;
+    --muted: #8793bd;
+    --blue: #1f7dff;
+    --neon-blue: #5fcff0;
+    --purple: #7c3cff;
+    --deep-purple: #321078;
+    --white: #ffffff;
+    --shadow: 0 28px 90px rgba(0, 0, 0, 0.44);
+    --glow: 0 0 22px rgba(69, 216, 255, 0.16);
+    --radius: 8px;
+    --max: 1180px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 112px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    background: var(--black);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+main,
+.public-shell {
+    width: 100%;
+}
+
+section[id] {
+    scroll-margin-top: 118px;
+}
+
+body.contact-card-open {
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+.cosmic-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 18% 18%, rgba(31, 125, 255, 0.22), transparent 32%),
+        radial-gradient(circle at 76% 12%, rgba(124, 60, 255, 0.2), transparent 34%),
+        radial-gradient(circle at 54% 78%, rgba(69, 216, 255, 0.1), transparent 38%),
+        linear-gradient(180deg, rgba(3, 4, 10, 0.74), rgba(4, 6, 18, 0.96)),
+        linear-gradient(135deg, var(--black), var(--navy) 54%, #080216);
+}
+
+.cosmic-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.024) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.024) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.35) 78%, transparent);
+}
+
+.cosmic-bg::after {
+    content: "";
+    position: absolute;
+    inset: -35%;
+    background:
+        conic-gradient(from 90deg at 50% 50%, transparent, rgba(69, 216, 255, 0.09), transparent, rgba(124, 60, 255, 0.11), transparent),
+        radial-gradient(circle, rgba(255, 255, 255, 0.055), transparent 34%);
+    filter: blur(70px);
+    opacity: 0.34;
+    animation: nebulaRotate 28s linear infinite;
+}
+
+.star-field {
+    position: absolute;
+    inset: -20%;
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 1px, transparent 2px),
+        radial-gradient(circle, rgba(69, 216, 255, 0.75) 0 1px, transparent 2px),
+        radial-gradient(circle, rgba(124, 60, 255, 0.72) 0 1px, transparent 2px);
+    background-size: 120px 120px, 180px 180px, 240px 240px;
+    opacity: 0.3;
+    animation: starDrift 34s linear infinite;
+}
+
+.star-field-two {
+    opacity: 0.22;
+    transform: scale(1.35);
+    animation-duration: 58s;
+    animation-direction: reverse;
+}
+
+.aurora,
+.glow-wave,
+.particle {
+    position: absolute;
+    pointer-events: none;
+}
+
+.aurora {
+    width: 140vw;
+    height: 34vh;
+    left: -20vw;
+    border-radius: 0;
+    filter: blur(46px);
+    opacity: 0.28;
+    transform: rotate(-8deg);
+    animation: auroraFlow 16s var(--ease) infinite alternate;
+}
+
+.aurora-one {
+    top: 16vh;
+    background: linear-gradient(90deg, transparent, rgba(31, 125, 255, 0.5), rgba(124, 60, 255, 0.32), transparent);
+}
+
+.aurora-two {
+    top: 62vh;
+    background: linear-gradient(90deg, transparent, rgba(124, 60, 255, 0.32), rgba(69, 216, 255, 0.28), transparent);
+    animation-delay: -7s;
+    transform: rotate(7deg);
+}
+
+.glow-wave {
+    width: 68vw;
+    height: 1px;
+    left: 16vw;
+    background: linear-gradient(90deg, transparent, rgba(69, 216, 255, 0.34), rgba(124, 60, 255, 0.3), transparent);
+    box-shadow: 0 0 18px rgba(69, 216, 255, 0.16);
+    animation: waveSlide 10s ease-in-out infinite alternate;
+}
+
+.glow-wave-one {
+    top: 28vh;
+}
+
+.glow-wave-two {
+    top: 78vh;
+    animation-delay: -4s;
+}
+
+.particle {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--neon-blue);
+    box-shadow: 0 0 12px rgba(69, 216, 255, 0.45);
+    animation: particleFloat 9s ease-in-out infinite;
+}
+
+.particle-one {
+    top: 22%;
+    left: 14%;
+}
+
+.particle-two {
+    top: 48%;
+    right: 12%;
+    background: var(--purple);
+    box-shadow: 0 0 12px rgba(124, 60, 255, 0.45);
+    animation-delay: -3s;
+}
+
+.particle-three {
+    bottom: 18%;
+    left: 54%;
+    animation-delay: -6s;
+}
+
+.site-header {
+    position: fixed;
+    z-index: 100;
+    top: 18px;
+    left: 50%;
+    width: calc(100% - clamp(24px, 5vw, 96px));
+    min-height: 72px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 12px 14px 12px 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(5, 8, 22, 0.68);
+    box-shadow: 0 18px 70px rgba(0, 0, 0, 0.36);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    transition: top 220ms ease, background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.site-header.is-scrolled {
+    top: 10px;
+    background: rgba(5, 8, 22, 0.9);
+    border-color: rgba(69, 216, 255, 0.2);
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.46), var(--glow);
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    color: var(--white);
+    font-weight: 900;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    overflow: hidden;
+    border: 1px solid rgba(69, 216, 255, 0.34);
+    border-radius: var(--radius);
+    background: rgba(0, 0, 0, 0.72);
+    box-shadow: 0 0 18px rgba(69, 216, 255, 0.18), 0 0 18px rgba(124, 60, 255, 0.12);
+}
+
+.brand-mark img,
+.console-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.18);
+}
+
+.public-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.055);
+}
+
+.public-nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 14px;
+    border-radius: 6px;
+    color: var(--text-soft);
+    font-size: 0.92rem;
+    font-weight: 750;
+    transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.public-nav a::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 6px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--purple));
+    opacity: 0;
+    transform: scaleX(0.35);
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.public-nav a:hover,
+.public-nav a:focus-visible,
+.public-nav a[aria-current="page"] {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.08);
+    outline: none;
+}
+
+.public-nav a:hover::after,
+.public-nav a:focus-visible::after,
+.public-nav a[aria-current="page"]::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.header-actions,
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 19px;
+    height: 2px;
+    margin: 4px auto;
+    border-radius: 999px;
+    background: currentColor;
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.site-header.nav-open .menu-toggle span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.site-header.nav-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.site-header.nav-open .menu-toggle span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+.button {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 20px;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    font-weight: 850;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform 190ms var(--ease), border-color 190ms ease, box-shadow 190ms ease, background 190ms ease;
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at var(--pointer-x, 0.5) var(--pointer-y, 0.5), rgba(255, 255, 255, 0.42), transparent 34%);
+    opacity: 0;
+    transition: opacity 190ms ease;
+}
+
+.button::after {
+    content: "";
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.34);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 260ms ease, opacity 260ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+    transform: translateY(-3px);
+    outline: none;
+}
+
+.button:hover::before,
+.button:focus-visible::before {
+    opacity: 1;
+}
+
+.button:hover::after,
+.button:focus-visible::after {
+    transform: scale(6);
+    opacity: 0.08;
+}
+
+.button-primary {
+    color: #f9fbff;
+    background: linear-gradient(135deg, var(--blue), var(--neon-blue) 48%, var(--purple));
+    box-shadow: 0 0 0 1px rgba(69, 216, 255, 0.12), 0 16px 42px rgba(31, 125, 255, 0.24);
+}
+
+.button-glass {
+    color: var(--text);
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.075);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.button-glass:hover,
+.button-glass:focus-visible {
+    border-color: rgba(69, 216, 255, 0.3);
+    box-shadow: 0 0 22px rgba(69, 216, 255, 0.1);
+}
+
+.public-shell {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.hero-section {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.98fr);
+    align-items: center;
+    gap: clamp(36px, 6vw, 78px);
+    padding: clamp(118px, 13vh, 148px) clamp(24px, 7vw, 128px) clamp(56px, 8vh, 96px);
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: -4% -8%;
+    z-index: -1;
+    background: radial-gradient(circle at calc(var(--pointer-x, 0.5) * 100%) calc(var(--pointer-y, 0.5) * 100%), rgba(69, 216, 255, 0.2), transparent 34%);
+    opacity: 0.9;
+}
+
+.hero-content {
+    max-width: 720px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px;
+    color: var(--neon-blue);
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.hero-content h1 {
+    margin: 0;
+    font-size: clamp(2.55rem, 5.35vw, 5.6rem);
+    line-height: 1.01;
+    letter-spacing: 0;
+    text-wrap: balance;
+}
+
+.hero-copy {
+    max-width: 650px;
+    margin: 26px 0 0;
+    color: var(--text-soft);
+    font-size: clamp(1rem, 1.55vw, 1.18rem);
+    line-height: 1.78;
+}
+
+.hero-actions {
+    flex-wrap: wrap;
+    margin-top: 34px;
+}
+
+.hero-proof {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+}
+
+.hero-proof span,
+.floating-badge,
+.card-kicker {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius);
+    color: var(--text-soft);
+    background: rgba(255, 255, 255, 0.075);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-size: 0.88rem;
+    font-weight: 750;
+}
+
+.hero-orbit {
+    position: relative;
+    min-height: min(58vh, 540px);
+    display: grid;
+    place-items: center;
+}
+
+.orbit-ring {
+    position: absolute;
+    border: 1px solid rgba(69, 216, 255, 0.14);
+    border-radius: 50%;
+    transform: rotate(18deg);
+    animation: orbitSpin 18s linear infinite;
+}
+
+.orbit-ring-one {
+    width: min(520px, 100%);
+    aspect-ratio: 1;
+}
+
+.orbit-ring-two {
+    width: min(390px, 78%);
+    aspect-ratio: 1;
+    border-color: rgba(124, 60, 255, 0.16);
+    animation-duration: 26s;
+    animation-direction: reverse;
+}
+
+.hero-console {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 520px);
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.07)),
+        rgba(7, 10, 24, 0.78);
+    box-shadow: var(--shadow), 0 0 42px rgba(124, 60, 255, 0.13);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    animation: floatPanel 7s ease-in-out infinite;
+}
+
+.console-top {
+    display: flex;
+    gap: 7px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.console-top span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--purple);
+}
+
+.console-top span:nth-child(2) {
+    background: var(--blue);
+}
+
+.console-top span:nth-child(3) {
+    background: var(--neon-blue);
+}
+
+.console-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 0;
+}
+
+.console-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--neon-blue), var(--purple));
+    box-shadow: var(--glow);
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 950;
+}
+
+.console-brand strong,
+.console-grid strong,
+.metric-strip strong,
+.service-card h3,
+.showcase-card h3,
+.founder-card h3,
+.process-list strong {
+    color: var(--white);
+}
+
+.console-brand p,
+.console-grid p,
+.metric-strip p,
+.service-card p,
+.showcase-card p,
+.founder-card p,
+.process-list p,
+.section-intro p,
+.contact-copy p,
+.site-footer p,
+.footer-column a,
+.footer-column span,
+.footer-bottom,
+.contact-card-copy {
+    color: var(--muted);
+}
+
+.console-brand p {
+    margin: 3px 0 0;
+}
+
+.console-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.console-grid article,
+.metric-strip article,
+.service-card,
+.showcase-card,
+.founder-card,
+.process-list article,
+.contact-quick-list a,
+.contact-form,
+.contact-card-grid article {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: var(--radius);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.055)),
+        rgba(8, 12, 30, 0.72);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.console-grid article {
+    padding: 16px;
+}
+
+.console-grid span {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 1.35rem;
+}
+
+.console-grid p {
+    margin: 6px 0 0;
+    font-size: 0.9rem;
+}
+
+.floating-badge {
+    position: absolute;
+    z-index: 2;
+    color: var(--white);
+    animation: floatPanel 6.4s ease-in-out infinite;
+}
+
+.badge-top {
+    top: 82px;
+    right: 10px;
+}
+
+.badge-bottom {
+    left: 0;
+    bottom: 88px;
+    animation-delay: -2.6s;
+}
+
+.metric-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.metric-strip article {
+    padding: 24px;
+}
+
+.metric-strip span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 18px;
+    border-radius: var(--radius);
+    color: var(--neon-blue);
+    background: rgba(69, 216, 255, 0.1);
+    border: 1px solid rgba(69, 216, 255, 0.24);
+    font-weight: 950;
+}
+
+.metric-strip strong {
+    display: block;
+    font-size: 1.16rem;
+}
+
+.metric-strip p {
+    margin: 8px 0 0;
+}
+
+.content-band,
+.showcase-band,
+.about-band,
+.process-band,
+.contact-band,
+.site-footer {
+    position: relative;
+    margin-top: 0;
+    padding: clamp(70px, 9vw, 124px) clamp(24px, 7vw, 128px);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: 0;
+    background:
+        linear-gradient(135deg, rgba(31, 125, 255, 0.11), transparent 36%),
+        linear-gradient(315deg, rgba(124, 60, 255, 0.11), transparent 42%),
+        rgba(255, 255, 255, 0.045);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.metric-strip,
+.section-intro,
+.service-grid,
+.showcase-grid,
+.founder-grid,
+.process-list,
+.contact-band > *,
+.footer-main,
+.footer-bottom {
+    width: min(100%, var(--max));
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.metric-strip {
+    padding: 0 clamp(24px, 7vw, 128px) clamp(46px, 6vw, 82px);
+}
+
+.section-intro {
+    max-width: 790px;
+    margin-bottom: 34px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-intro h2,
+.contact-copy h2,
+.contact-card h2 {
+    margin: 0;
+    color: var(--white);
+    font-size: clamp(2rem, 4.8vw, 4.05rem);
+    line-height: 1.02;
+    letter-spacing: 0;
+    text-wrap: balance;
+}
+
+.section-intro p,
+.contact-copy p,
+.contact-card-copy {
+    margin: 16px 0 0;
+    font-size: 1.04rem;
+    line-height: 1.78;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.service-card,
+.showcase-card,
+.founder-card,
+.process-list article,
+.contact-quick-list a {
+    padding: 24px;
+    transition: transform 220ms var(--ease), border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
+
+.service-card::before,
+.showcase-card::before,
+.founder-card::before,
+.process-list article::before,
+.contact-quick-list a::before,
+.contact-form::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(69, 216, 255, 0.22), transparent 35%, rgba(124, 60, 255, 0.18));
+    opacity: 0;
+    transition: opacity 220ms ease;
+}
+
+.service-card > *,
+.showcase-card > *,
+.founder-card > *,
+.process-list article > *,
+.contact-quick-list a > *,
+.contact-form > * {
+    position: relative;
+    z-index: 1;
+}
+
+.service-card:hover,
+.service-card:focus-within,
+.showcase-card:hover,
+.founder-card:hover,
+.process-list article:hover,
+.contact-quick-list a:hover,
+.contact-quick-list a:focus-visible {
+    transform: translateY(-6px);
+    border-color: rgba(69, 216, 255, 0.28);
+    box-shadow: 0 22px 62px rgba(0, 0, 0, 0.3), var(--glow);
+    outline: none;
+}
+
+.service-card:hover::before,
+.showcase-card:hover::before,
+.founder-card:hover::before,
+.process-list article:hover::before,
+.contact-quick-list a:hover::before,
+.contact-quick-list a:focus-visible::before,
+.contact-form:hover::before {
+    opacity: 1;
+}
+
+.service-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 22px;
+    border: 1px solid rgba(69, 216, 255, 0.3);
+    border-radius: var(--radius);
+    background: rgba(69, 216, 255, 0.1);
+    box-shadow: 0 0 18px rgba(69, 216, 255, 0.08);
+    font-size: 1.45rem;
+}
+
+.service-card h3,
+.showcase-card h3,
+.founder-card h3 {
+    margin: 0;
+    font-size: 1.22rem;
+    line-height: 1.22;
+}
+
+.service-card p,
+.showcase-card p,
+.founder-card p {
+    margin: 12px 0 20px;
+}
+
+.service-card a:not(.button) {
+    color: var(--neon-blue);
+    font-weight: 850;
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: 1.24fr 0.76fr;
+    gap: 14px;
+}
+
+.showcase-wide {
+    grid-row: span 2;
+    min-height: 430px;
+    display: grid;
+    align-content: end;
+}
+
+.launch-map {
+    position: absolute;
+    inset: 22px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    opacity: 0.82;
+}
+
+.launch-map span {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius);
+    background:
+        linear-gradient(180deg, rgba(69, 216, 255, 0.2), rgba(124, 60, 255, 0.1)),
+        rgba(255, 255, 255, 0.045);
+    animation: mapPulse 5s ease-in-out infinite;
+}
+
+.launch-map span:nth-child(1) {
+    grid-column: span 2;
+}
+
+.launch-map span:nth-child(2) {
+    animation-delay: -1s;
+}
+
+.launch-map span:nth-child(3) {
+    grid-column: span 2;
+    animation-delay: -2s;
+}
+
+.launch-map span:nth-child(4) {
+    animation-delay: -3s;
+}
+
+.showcase-wide > div:last-child {
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+}
+
+.card-kicker {
+    margin-bottom: 12px;
+    color: var(--neon-blue);
+}
+
+.founder-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.founder-card {
+    min-height: 300px;
+}
+
+.founder-avatar {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(69, 216, 255, 0.34);
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(31, 125, 255, 0.2), rgba(124, 60, 255, 0.22));
+    font-size: 2rem;
+}
+
+.founder-card span {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--neon-blue);
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.process-list {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.process-list::before {
+    content: "";
+    position: absolute;
+    top: 42px;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(95, 207, 240, 0.34), rgba(124, 60, 255, 0.28), transparent);
+    box-shadow: none;
+}
+
+.process-list article {
+    min-height: 230px;
+}
+
+.process-list span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(69, 216, 255, 0.38);
+    border-radius: var(--radius);
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    box-shadow: 0 0 18px rgba(69, 216, 255, 0.12);
+    font-weight: 950;
+}
+
+.process-list strong {
+    display: block;
+    font-size: 1.12rem;
+}
+
+.process-list p {
+    margin: 10px 0 0;
+}
+
+.contact-band {
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: clamp(28px, 5vw, 60px);
+    align-items: start;
+}
+
+.contact-copy {
+    position: sticky;
+    top: 118px;
+}
+
+.contact-quick-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.contact-quick-list a {
+    display: block;
+}
+
+.contact-quick-list span,
+.contact-form label span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--neon-blue);
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.contact-quick-list strong {
+    color: var(--white);
+    font-size: 1.02rem;
+}
+
+.contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 22px;
+}
+
+.contact-form label {
+    display: grid;
+}
+
+.message-field,
+.contact-form button,
+.contact-form .button-glass {
+    grid-column: 1 / -1;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius);
+    color: var(--text);
+    background: rgba(4, 6, 18, 0.78);
+    padding: 13px 14px;
+    outline: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+select {
+    color-scheme: dark;
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(201, 213, 255, 0.48);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: rgba(69, 216, 255, 0.54);
+    background: rgba(8, 12, 30, 0.92);
+    box-shadow: 0 0 0 4px rgba(69, 216, 255, 0.1);
+}
+
+.site-footer {
+    margin-bottom: 0;
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: minmax(280px, 1.35fr) repeat(3, 1fr);
+    gap: 24px;
+}
+
+.footer-brand-panel p {
+    max-width: 420px;
+    margin: 16px 0 22px;
+}
+
+.footer-column {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+}
+
+.footer-column h2 {
+    margin: 0 0 4px;
+    color: var(--white);
+    font-size: 0.92rem;
+}
+
+.footer-column a:hover,
+.footer-column a:focus-visible {
+    color: var(--neon-blue);
+    outline: none;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 34px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.9rem;
+}
+
+.whatsapp-float {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 90;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border: 1px solid rgba(69, 216, 255, 0.5);
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    box-shadow: 0 18px 42px rgba(31, 125, 255, 0.22);
+    font-size: 1.35rem;
+    transition: transform 180ms var(--ease), box-shadow 180ms ease;
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 22px 54px rgba(124, 60, 255, 0.25), var(--glow);
+    outline: none;
+}
+
+.mobile-bottom-nav {
+    display: none;
+}
+
+.contact-card-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.contact-card-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.68);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.contact-card {
+    position: relative;
+    width: min(760px, 100%);
+    max-height: min(760px, calc(100vh - 48px));
+    overflow: auto;
+    padding: clamp(26px, 5vw, 46px);
+    border: 1px solid rgba(69, 216, 255, 0.24);
+    border-radius: var(--radius);
+    background:
+        linear-gradient(135deg, rgba(31, 125, 255, 0.14), rgba(124, 60, 255, 0.16)),
+        rgba(8, 12, 30, 0.94);
+    box-shadow: var(--shadow), var(--glow);
+    animation: modalIn 260ms var(--ease) both;
+}
+
+.contact-card-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    min-height: 38px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius);
+    color: var(--text-soft);
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+}
+
+.contact-card-close:hover,
+.contact-card-close:focus-visible {
+    color: var(--white);
+    border-color: rgba(69, 216, 255, 0.46);
+    outline: none;
+}
+
+.contact-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.contact-card-grid article {
+    padding: 20px;
+}
+
+.contact-card-grid span {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 1.5rem;
+}
+
+.contact-card-grid strong {
+    color: var(--white);
+}
+
+.contact-card-grid p {
+    margin: 8px 0 0;
+}
+
+.contact-card-grid a {
+    color: var(--text-soft);
+}
+
+.contact-card-grid a:hover,
+.contact-card-grid a:focus-visible {
+    color: var(--neon-blue);
+    outline: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 620ms var(--ease), transform 620ms var(--ease);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.perf-lite *,
+.perf-lite *::before,
+.perf-lite *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+}
+
+.perf-lite .star-field,
+.perf-lite .aurora,
+.perf-lite .glow-wave,
+.perf-lite .particle,
+.perf-lite .orbit-ring {
+    animation: none !important;
+}
+
+.perf-lite .reveal {
+    opacity: 1;
+    transform: none;
+}
+
+@keyframes starDrift {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(-140px, 180px, 0);
+    }
+}
+
+@keyframes auroraFlow {
+    from {
+        transform: translate3d(-5vw, -2vh, 0) rotate(-8deg);
+    }
+
+    to {
+        transform: translate3d(7vw, 3vh, 0) rotate(8deg);
+    }
+}
+
+@keyframes waveSlide {
+    from {
+        transform: translateX(-7vw) scaleX(0.82);
+        opacity: 0.26;
+    }
+
+    to {
+        transform: translateX(7vw) scaleX(1.08);
+        opacity: 0.72;
+    }
+}
+
+@keyframes particleFloat {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 0.48;
+    }
+
+    50% {
+        transform: translate3d(18px, -28px, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes orbitSpin {
+    to {
+        transform: rotate(378deg);
+    }
+}
+
+@keyframes floatPanel {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+@keyframes mapPulse {
+    0%,
+    100% {
+        opacity: 0.45;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes menuDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1120px) {
+    .hero-section,
+    .contact-band {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-section {
+        min-height: auto;
+    }
+
+    .hero-orbit {
+        min-height: 500px;
+        max-width: 720px;
+    }
+
+    .service-grid,
+    .process-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-list::before {
+        display: none;
+    }
+
+    .contact-copy {
+        position: static;
+    }
+
+    .footer-main {
+        grid-template-columns: 1.2fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    html {
+        scroll-padding-top: 96px;
+    }
+
+    .site-header {
+        top: 12px;
+        width: calc(100% - 24px);
+    }
+
+    .menu-toggle {
+        display: inline-block;
+    }
+
+    .site-header .public-nav {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+        border-color: rgba(69, 216, 255, 0.18);
+        background: rgba(5, 8, 22, 0.96);
+        box-shadow: var(--shadow);
+        animation: menuDrop 180ms var(--ease) both;
+    }
+
+    .site-header.nav-open .public-nav {
+        display: flex;
+    }
+
+    .public-nav a {
+        justify-content: flex-start;
+        min-height: 48px;
+    }
+
+    .header-actions .button {
+        display: none;
+    }
+
+    .public-shell {
+        width: 100%;
+        padding-top: 0;
+    }
+
+    .showcase-grid,
+    .founder-grid,
+    .contact-card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .showcase-wide {
+        grid-row: auto;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 700px) {
+    body {
+        padding-bottom: 82px;
+    }
+
+    .cosmic-bg::before {
+        background-size: 54px 54px;
+    }
+
+    .aurora,
+    .particle {
+        display: none;
+    }
+
+    .site-header {
+        min-height: 62px;
+        padding: 9px 10px 9px 12px;
+    }
+
+    .brand {
+        font-size: 0.78rem;
+    }
+
+    .brand-mark {
+        width: 32px;
+        height: 32px;
+    }
+
+    .public-shell {
+        width: 100%;
+        padding-top: 0;
+    }
+
+    .hero-section {
+        gap: 28px;
+        padding: 100px 18px 42px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.32rem, 12vw, 4rem);
+        line-height: 0.99;
+    }
+
+    .hero-copy {
+        margin-top: 18px;
+        font-size: 0.98rem;
+        line-height: 1.68;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-actions .button {
+        width: 100%;
+    }
+
+    .hero-orbit {
+        min-height: auto;
+        padding: 26px 0;
+    }
+
+    .orbit-ring,
+    .floating-badge {
+        display: none;
+    }
+
+    .console-grid,
+    .metric-strip,
+    .service-grid,
+    .process-list,
+    .contact-form {
+        grid-template-columns: 1fr;
+    }
+
+    .content-band,
+    .showcase-band,
+    .about-band,
+    .process-band,
+    .contact-band,
+    .site-footer {
+        margin-top: 0;
+        padding: 52px 18px;
+    }
+
+    .section-intro {
+        margin-bottom: 24px;
+    }
+
+    .section-intro h2,
+    .contact-copy h2,
+    .contact-card h2 {
+        font-size: clamp(1.9rem, 9vw, 2.8rem);
+    }
+
+    .service-card,
+    .showcase-card,
+    .founder-card,
+    .process-list article,
+    .contact-form,
+    .contact-card-grid article {
+        padding: 20px;
+    }
+
+    .launch-map {
+        position: relative;
+        inset: auto;
+        min-height: 180px;
+        margin-bottom: 22px;
+    }
+
+    .message-field,
+    .contact-form button,
+    .contact-form .button-glass {
+        grid-column: auto;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+    }
+
+    .whatsapp-float {
+        right: 14px;
+        bottom: 88px;
+        width: 52px;
+        height: 52px;
+    }
+
+    .mobile-bottom-nav {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        z-index: 95;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2px;
+        padding: 7px;
+        border: 1px solid rgba(69, 216, 255, 0.24);
+        border-radius: var(--radius);
+        background: rgba(5, 8, 22, 0.92);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.44), var(--glow);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+
+    .mobile-bottom-nav a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border-radius: 6px;
+        color: var(--text-soft);
+        font-size: 0.74rem;
+        font-weight: 850;
+    }
+
+    .mobile-bottom-nav a:hover,
+    .mobile-bottom-nav a:focus-visible {
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.08);
+        outline: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .brand {
+        max-width: 170px;
+    }
+
+    .button {
+        min-height: 46px;
+        padding-inline: 14px;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .contact-card {
+        max-height: calc(100vh - 28px);
+        padding: 24px 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 1ms !important;
+    }
+}
+
+    </Style>
+<body>
+    <div class="cosmic-bg" aria-hidden="true">
+        <span class="star-field star-field-one"></span>
+        <span class="star-field star-field-two"></span>
+        <span class="aurora aurora-one"></span>
+        <span class="aurora aurora-two"></span>
+        <span class="glow-wave glow-wave-one"></span>
+        <span class="glow-wave glow-wave-two"></span>
+        <span class="particle particle-one"></span>
+        <span class="particle particle-two"></span>
+        <span class="particle particle-three"></span>
+    </div>
+
+    <header class="site-header is-public" id="siteHeader">
+        <a class="brand" href="#home" aria-label="WAVETYPEWEB home">
+            <span class="brand-mark"><img src="./assets/wavetypeweb-logo.png" alt="" width="96" height="96"></span>
+            <span>WAVETYPEWEB</span>
+        </a>
+
+        <nav class="public-nav" id="publicNav" aria-label="Primary navigation">
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#process">Process</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a class="button button-primary" href="#contact" data-contact-trigger>Book a Call</a>
+        </div>
+    </header>
+
+    <main id="home">
+        <section class="public-shell">
+            <section class="hero-section" aria-labelledby="heroTitle">
+                <div class="hero-content">
+                    <p class="eyebrow"><span>🚀</span> Blue-purple web agency for modern brands</p>
+                    <h1 id="heroTitle">
+                        Building websites that help businesses grow in the digital universe.
+                    </h1>
+                    <p class="hero-copy">WAVETYPEWEB designs and develops premium animated websites with glassmorphism UI, fast performance, mobile-first layouts, and a contact experience that makes visitors take action.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#contact">Start Your Project</a>
+                        <a class="button button-glass" href="#services">Explore Services</a>
+                    </div>
+                    <div class="hero-proof" aria-label="Website strengths">
+                        <span>⚡ Fast Launch</span>
+                        <span>📱 Mobile-first</span>
+                        <span>✨ Premium UI</span>
+                    </div>
+                </div>
+
+                <aside class="hero-orbit" aria-label="Interactive agency dashboard preview">
+                    <div class="orbit-ring orbit-ring-one"></div>
+                    <div class="orbit-ring orbit-ring-two"></div>
+                    <div class="hero-console">
+                        <div class="console-top">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="console-brand">
+                            <span class="console-logo"><img src="./assets/wavetypeweb-logo.png" alt="" width="128" height="128"></span>
+                            <div>
+                                <strong>WAVETYPEWEB OS</strong>
+                                <p>Live website launch cockpit</p>
+                            </div>
+                        </div>
+                        <div class="console-grid">
+                            <article>
+                                <span>💻</span>
+                                <strong>Web Development</strong>
+                                <p>Clean frontend builds</p>
+                            </article>
+                            <article>
+                                <span>🎨</span>
+                                <strong>UI/UX Design</strong>
+                                <p>Premium sections</p>
+                            </article>
+                            <article>
+                                <span>🌐</span>
+                                <strong>Modern Websites</strong>
+                                <p>Business-ready</p>
+                            </article>
+                            <article>
+                                <span>⚡</span>
+                                <strong>Performance</strong>
+                                <p>Optimized motion</p>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="floating-badge badge-top">Launch in days</div>
+                    <div class="floating-badge badge-bottom">Built for growth</div>
+                </aside>
+            </section>
+
+            <section class="metric-strip" aria-label="Agency highlights">
+                <article>
+                    <span>01</span>
+                    <strong>Strategy First</strong>
+                    <p>Every section is designed around your business goal.</p>
+                </article>
+                <article>
+                    <span>02</span>
+                    <strong>Premium Motion</strong>
+                    <p>Animations feel smooth, not noisy or heavy.</p>
+                </article>
+                <article>
+                    <span>03</span>
+                    <strong>Responsive Build</strong>
+                    <p>Desktop polish and app-like mobile screens.</p>
+                </article>
+            </section>
+
+            <section class="content-band services-band" id="services">
+                <div class="section-intro">
+                    <p class="eyebrow"><span>💻</span> Services</p>
+                    <h2>Everything a premium website needs, rebuilt for speed and trust.</h2>
+                    <p>Choose one focused service or combine them into a complete launch experience.</p>
+                </div>
+
+                <div class="service-grid">
+                    <article class="service-card">
+                        <span class="service-icon">💻</span>
+                        <h3>Website Development</h3>
+                        <p>Responsive frontend builds with clean structure, sharp sections, and smooth interactions.</p>
+                        <a href="#contact">Build my website</a>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-icon">🎨</span>
+                        <h3>UI/UX Design</h3>
+                        <p>Modern layouts, strong hierarchy, glass cards, and premium design systems.</p>
+                        <a href="#contact">Design my UI</a>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-icon">⚡</span>
+                        <h3>Website Optimization</h3>
+                        <p>Faster pages, lighter effects, cleaner structure, and better mobile performance.</p>
+                        <a href="#contact">Optimize now</a>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-icon">🌐</span>
+                        <h3>Business Websites</h3>
+                        <p>Professional pages for shops, service brands, local businesses, and creators.</p>
+                        <a href="#contact">Grow online</a>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-icon">🚀</span>
+                        <h3>Landing Pages</h3>
+                        <p>High-impact launch pages built to explain your offer and drive inquiries.</p>
+                        <a href="#contact">Launch fast</a>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-icon">📱</span>
+                        <h3>Mobile Responsive Design</h3>
+                        <p>Touch-friendly, readable, and polished experiences for customers on phones.</p>
+                        <a href="#contact">Go mobile-first</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="showcase-band" id="work">
+                <div class="section-intro">
+                    <p class="eyebrow"><span>✨</span> Digital launch lab</p>
+                    <h2>A futuristic agency experience without large static hero images.</h2>
+                    <p>Instead of template screenshots, the interface itself becomes the visual asset: animated panels, glowing flows, and glass dashboards.</p>
+                </div>
+
+                <div class="showcase-grid">
+                    <article class="showcase-card showcase-wide">
+                        <div class="launch-map" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div>
+                            <span class="card-kicker">Featured System</span>
+                            <h3>Business Website Launch</h3>
+                            <p>A complete homepage flow: hero, trust signals, services, founder story, project inquiry, and contact cards.</p>
+                        </div>
+                    </article>
+                    <article class="showcase-card">
+                        <span class="service-icon">🧠</span>
+                        <h3>Smart hierarchy</h3>
+                        <p>Visitors understand the offer in seconds.</p>
+                    </article>
+                    <article class="showcase-card">
+                        <span class="service-icon">💬</span>
+                        <h3>Contact-ready</h3>
+                        <p>Phone, email, WhatsApp, and inquiry paths stay visible.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="about-band" id="about">
+                <div class="section-intro">
+                    <p class="eyebrow"><span>👨‍💻</span> About WAVETYPEWEB</p>
+                    <h2>Meet the founders building affordable premium websites.</h2>
+                    <p>WaveTypeWeb is founded by two young innovators passionate about creating modern, professional websites for businesses and creators.</p>
+                </div>
+
+                <div class="founder-grid">
+                    <article class="founder-card">
+                        <div class="founder-avatar">👨‍💻</div>
+                        <span>Co-Founder &amp; Developer</span>
+                        <h3>Akshay</h3>
+                        <p>Builds responsive frontend systems, page structure, interactions, and launch-ready website experiences.</p>
+                    </article>
+                    <article class="founder-card">
+                        <div class="founder-avatar">🎨</div>
+                        <span>Co-Founder &amp; Designer</span>
+                        <h3>Atharva</h3>
+                        <p>Shapes visual direction, layouts, spacing, brand feel, and premium UI presentation.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="process-band" id="process">
+                <div class="section-intro">
+                    <p class="eyebrow"><span>🛰️</span> Process</p>
+                    <h2>From first idea to live website without confusion.</h2>
+                    <p>A simple workflow keeps the project moving fast while the final site still feels high-end.</p>
+                </div>
+
+                <div class="process-list" aria-label="Project process timeline">
+                    <article class="process-step">
+                        <span>01</span>
+                        <strong>Discovery Call</strong>
+                        <p>We understand your business, target customers, and the website goal.</p>
+                    </article>
+                    <article class="process-step">
+                        <span>02</span>
+                        <strong>Design Direction</strong>
+                        <p>We create the visual system, layout flow, cards, and CTA structure.</p>
+                    </article>
+                    <article class="process-step">
+                        <span>03</span>
+                        <strong>Development</strong>
+                        <p>The experience becomes a responsive, animated, performance-aware frontend.</p>
+                    </article>
+                    <article class="process-step">
+                        <span>04</span>
+                        <strong>Launch</strong>
+                        <p>Final polish, contact checks, mobile review, and launch support.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="contact-band public-contact-band" id="contact">
+                <div class="contact-copy">
+                    <p class="eyebrow"><span>📞</span> Contact Us</p>
+                    <h2>Tell us what you want to build.</h2>
+                    <p>Send a quick project inquiry or use WhatsApp/email directly. Keep it simple; we will help shape the next step.</p>
+
+                    <div class="contact-quick-list" aria-label="Contact details">
+                        <a href="tel:+919981392269">
+                            <span>📞 Phone</span>
+                            <strong>+91 9981392269</strong>
+                        </a>
+                        <a href="mailto:wavetypeweb@gmail.com">
+                            <span>📧 Email</span>
+                            <strong>wavetypeweb@gmail.com</strong>
+                        </a>
+                        <a href="https://wa.me/919981392269" target="_blank" rel="noopener noreferrer">
+                            <span>💬 WhatsApp</span>
+                            <strong>Start chat</strong>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="contact-form" action="mailto:wavetypeweb@gmail.com" method="post" enctype="text/plain">
+                    <label>
+                        <span>Name</span>
+                        <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                    </label>
+                    <label>
+                        <span>Project Type</span>
+                        <select name="project_type" required>
+                            <option value="">Select project</option>
+                            <option>Business website</option>
+                            <option>Landing page</option>
+                            <option>Website redesign</option>
+                            <option>Mobile responsive UI</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>Timeline</span>
+                        <select name="timeline" required>
+                            <option value="">Select timeline</option>
+                            <option>Urgent launch</option>
+                            <option>1-2 weeks</option>
+                            <option>This month</option>
+                            <option>Planning stage</option>
+                        </select>
+                    </label>
+                    <label class="message-field">
+                        <span>📝 Project Inquiry</span>
+                        <textarea name="message" rows="5" placeholder="Tell us about your business, audience, and website idea." required></textarea>
+                    </label>
+                    <button class="button button-primary" type="submit">Send Inquiry</button>
+                    <a class="button button-glass" href="https://forms.gle/En87chwyFef5TkZt6" target="_blank" rel="noopener noreferrer">Open Google Form</a>
+                </form>
+            </section>
+
+            <footer class="site-footer" aria-label="Website footer">
+                <div class="footer-main">
+                    <div class="footer-brand-panel">
+                        <a class="brand footer-brand" href="#home" aria-label="WAVETYPEWEB home">
+                            <span class="brand-mark"><img src="./assets/wavetypeweb-logo.png" alt="" width="96" height="96"></span>
+                            <span>WAVETYPEWEB</span>
+                        </a>
+                        <p>Premium futuristic websites with blue-purple glassmorphism, animated layouts, and business-focused contact flows.</p>
+                        <button class="button button-primary footer-contact-button" type="button" data-contact-trigger>Quick Contact</button>
+                    </div>
+
+                    <div class="footer-column">
+                        <h2>Quick Links</h2>
+                        <a href="#services">Services</a>
+                        <a href="#work">Work</a>
+                        <a href="#about">About</a>
+                        <a href="#process">Process</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h2>Contact</h2>
+                        <a href="tel:+919981392269">+91 9981392269</a>
+                        <a href="tel:+919340379462">+91 9340379462</a>
+                        <a href="mailto:wavetypeweb@gmail.com">wavetypeweb@gmail.com</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h2>Social</h2>
+                        <a href="#contact">Instagram</a>
+                        <a href="#contact">LinkedIn</a>
+                        <a href="https://wa.me/919981392269" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <span>&copy; 2026 WAVETYPEWEB. All rights reserved.</span>
+                    <span>Blue. Purple. Fast. Future-ready.</span>
+                </div>
+            </footer>
+        </section>
+    </main>
+
+    <a class="whatsapp-float" href="https://wa.me/919981392269" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        💬
+    </a>
+
+    <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="contact-card-layer hidden" id="contactCardLayer" aria-hidden="true">
+        <div class="contact-card-backdrop" data-contact-close></div>
+        <section class="contact-card" id="contactCard" role="dialog" aria-modal="true" aria-labelledby="contactCardTitle" tabindex="-1">
+            <button class="contact-card-close" type="button" data-contact-close aria-label="Close contacts">Close</button>
+            <p class="eyebrow"><span>📞</span> Quick Contact</p>
+            <h2 id="contactCardTitle">Ready to build something premium?</h2>
+            <p class="contact-card-copy">Use phone, WhatsApp, email, or the project form. We will help you choose the best next step.</p>
+
+            <div class="contact-card-grid">
+                <article>
+                    <span>📧</span>
+                    <strong>Email</strong>
+                    <p><a href="mailto:wavetypeweb@gmail.com">wavetypeweb@gmail.com</a></p>
+                </article>
+                <article>
+                    <span>📞</span>
+                    <strong>Mobile / WhatsApp</strong>
+                    <p>
+                        <a href="tel:+919981392269">+91 9981392269</a><br>
+                        <a href="tel:+919340379462">+91 9340379462</a>
+                    </p>
+                </article>
+                <article>
+                    <span>📝</span>
+                    <strong>Project Form</strong>
+                    <p><a href="https://forms.gle/En87chwyFef5TkZt6" target="_blank" rel="noopener noreferrer">Open inquiry form</a></p>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <script>
+
+        const siteHeader = document.getElementById("siteHeader");
+const publicNav = document.getElementById("publicNav");
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = publicNav ? Array.from(publicNav.querySelectorAll("a")) : [];
+const contactLayer = document.getElementById("contactCardLayer");
+const contactCard = document.getElementById("contactCard");
+const contactTriggers = Array.from(document.querySelectorAll("[data-contact-trigger]"));
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const coarsePointer = window.matchMedia("(pointer: coarse)");
+const finePointer = window.matchMedia("(pointer: fine)");
+const supportsIntersectionObserver = "IntersectionObserver" in window;
+let lastContactTrigger = null;
+let isHeaderScrolled = siteHeader ? siteHeader.classList.contains("is-scrolled") : false;
+let headerFrame = 0;
+let useLiteEffects = false;
+
+if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+}
+
+if (!window.location.hash) {
+    window.scrollTo(0, 0);
+}
+
+function getConnection() {
+    return navigator.connection || navigator.mozConnection || navigator.webkitConnection || null;
+}
+
+function shouldUseLiteEffects() {
+    const connection = getConnection();
+    const saveData = Boolean(connection && connection.saveData);
+    const lowCoreCount = typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4;
+    const lowMemory = typeof navigator.deviceMemory === "number" && navigator.deviceMemory <= 4;
+    const compactTouchScreen = coarsePointer.matches && window.matchMedia("(max-width: 700px)").matches;
+
+    return !prefersReducedMotion.matches && (saveData || lowMemory || lowCoreCount || compactTouchScreen);
+}
+
+function updatePerformanceMode() {
+    useLiteEffects = shouldUseLiteEffects();
+    document.documentElement.classList.toggle("perf-lite", useLiteEffects);
+}
+
+updatePerformanceMode();
+
+function closeMobileMenu() {
+    if (!siteHeader || !menuToggle) {
+        return;
+    }
+
+    if (!siteHeader.classList.contains("nav-open")) {
+        return;
+    }
+
+    siteHeader.classList.remove("nav-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
+function toggleMobileMenu() {
+    if (!siteHeader || !menuToggle) {
+        return;
+    }
+
+    const isOpen = siteHeader.classList.toggle("nav-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+}
+
+function updateHeaderState() {
+    if (!siteHeader) {
+        return;
+    }
+
+    const shouldBeScrolled = window.scrollY > 16;
+
+    if (shouldBeScrolled === isHeaderScrolled) {
+        return;
+    }
+
+    isHeaderScrolled = shouldBeScrolled;
+    siteHeader.classList.toggle("is-scrolled", shouldBeScrolled);
+}
+
+function scheduleHeaderStateUpdate() {
+    if (headerFrame) {
+        return;
+    }
+
+    headerFrame = requestAnimationFrame(() => {
+        headerFrame = 0;
+        updateHeaderState();
+    });
+}
+
+function setContactTriggerState(isOpen) {
+    contactTriggers.forEach((trigger) => {
+        trigger.setAttribute("aria-expanded", String(isOpen));
+    });
+}
+
+function openContactCard(event, trigger) {
+    if (event) {
+        event.preventDefault();
+        lastContactTrigger = trigger || event.currentTarget;
+    }
+
+    if (!contactLayer || !contactCard) {
+        return;
+    }
+
+    closeMobileMenu();
+    contactLayer.classList.remove("hidden");
+    contactLayer.setAttribute("aria-hidden", "false");
+    document.body.classList.add("contact-card-open");
+    setContactTriggerState(true);
+
+    requestAnimationFrame(() => {
+        contactCard.focus({ preventScroll: true });
+    });
+}
+
+function closeContactCard() {
+    if (!contactLayer || contactLayer.classList.contains("hidden")) {
+        return;
+    }
+
+    contactLayer.classList.add("hidden");
+    contactLayer.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("contact-card-open");
+    setContactTriggerState(false);
+
+    if (lastContactTrigger) {
+        lastContactTrigger.focus({ preventScroll: true });
+    }
+}
+
+if (menuToggle) {
+    menuToggle.addEventListener("click", (event) => {
+        event.stopPropagation();
+        toggleMobileMenu();
+    });
+}
+
+navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        closeMobileMenu();
+
+        const targetId = link.getAttribute("href");
+
+        if (targetId && targetId.startsWith("#")) {
+            setCurrentSection(targetId.slice(1));
+        }
+    });
+});
+
+document.addEventListener("click", (event) => {
+    const clickedElement = event.target instanceof Element ? event.target : null;
+    const contactTrigger = clickedElement ? clickedElement.closest("[data-contact-trigger]") : null;
+
+    if (contactTrigger) {
+        openContactCard(event, contactTrigger);
+        return;
+    }
+
+    if (clickedElement && clickedElement.closest("[data-contact-close]")) {
+        closeContactCard();
+        return;
+    }
+
+    if (siteHeader && siteHeader.classList.contains("nav-open") && !siteHeader.contains(event.target)) {
+        closeMobileMenu();
+    }
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeMobileMenu();
+        closeContactCard();
+    }
+});
+
+contactTriggers.forEach((trigger) => {
+    trigger.setAttribute("aria-controls", "contactCard");
+    trigger.setAttribute("aria-haspopup", "dialog");
+    trigger.setAttribute("aria-expanded", "false");
+});
+
+window.addEventListener("scroll", scheduleHeaderStateUpdate, { passive: true });
+updateHeaderState();
+
+const revealTargets = document.querySelectorAll(
+    ".metric-strip article, .content-band, .showcase-band, .about-band, .service-card, .showcase-card, .founder-card, .process-band, .process-list article, .contact-band, .contact-form, .contact-quick-list a, .site-footer"
+);
+
+function showRevealTargetsImmediately() {
+    revealTargets.forEach((target) => {
+        target.classList.add("is-visible");
+        target.style.removeProperty("--reveal-delay");
+    });
+}
+
+if (useLiteEffects || prefersReducedMotion.matches) {
+    showRevealTargetsImmediately();
+} else {
+    revealTargets.forEach((target, index) => {
+        target.classList.add("reveal");
+        target.style.setProperty("--reveal-delay", `${Math.min((index % 4) * 70, 210)}ms`);
+    });
+}
+
+if (supportsIntersectionObserver && !prefersReducedMotion.matches && !useLiteEffects) {
+    const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.16,
+            rootMargin: "0px 0px -8% 0px"
+        }
+    );
+
+    revealTargets.forEach((target) => revealObserver.observe(target));
+} else {
+    showRevealTargetsImmediately();
+}
+
+const observedSections = navLinks
+    .map((link) => {
+        const id = link.getAttribute("href");
+        return id && id.startsWith("#") ? document.querySelector(id) : null;
+    })
+    .filter(Boolean);
+
+let currentSectionId = "";
+let navFrame = 0;
+
+function setCurrentSection(sectionId) {
+    if (sectionId === currentSectionId) {
+        return;
+    }
+
+    currentSectionId = sectionId;
+
+    navLinks.forEach((link) => {
+        const isCurrent = sectionId && link.getAttribute("href") === `#${sectionId}`;
+
+        if (isCurrent) {
+            link.setAttribute("aria-current", "page");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    });
+}
+
+function getHashSectionId() {
+    const id = window.location.hash.replace("#", "");
+
+    if (!id) {
+        return "";
+    }
+
+    return observedSections.some((section) => section.id === id) ? id : "";
+}
+
+function updateCurrentSectionFromScroll() {
+    navFrame = 0;
+
+    if (!observedSections.length) {
+        return;
+    }
+
+    const activationPoint = window.scrollY + Math.min(window.innerHeight * 0.38, 300);
+    let activeId = "";
+
+    observedSections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+
+        if (sectionTop <= activationPoint) {
+            activeId = section.id;
+        }
+    });
+
+    if (!activeId && window.location.hash) {
+        activeId = getHashSectionId();
+    }
+
+    setCurrentSection(activeId);
+}
+
+function scheduleNavStateUpdate() {
+    if (navFrame) {
+        return;
+    }
+
+    navFrame = requestAnimationFrame(updateCurrentSectionFromScroll);
+}
+
+if (observedSections.length > 0) {
+    setCurrentSection(getHashSectionId());
+    window.addEventListener("scroll", scheduleNavStateUpdate, { passive: true });
+    window.addEventListener("resize", scheduleNavStateUpdate, { passive: true });
+    window.addEventListener("hashchange", () => {
+        setCurrentSection(getHashSectionId());
+        scheduleNavStateUpdate();
+    });
+    scheduleNavStateUpdate();
+}
+
+const heroSection = document.querySelector(".hero-section");
+const magneticButtons = document.querySelectorAll(".button");
+
+if (!prefersReducedMotion.matches && finePointer.matches && !useLiteEffects) {
+    magneticButtons.forEach((button) => {
+        button.addEventListener(
+            "pointermove",
+            (event) => {
+                const bounds = button.getBoundingClientRect();
+                const x = ((event.clientX - bounds.left) / bounds.width).toFixed(3);
+                const y = ((event.clientY - bounds.top) / bounds.height).toFixed(3);
+
+                button.style.setProperty("--pointer-x", `${Number(x) * 100}%`);
+                button.style.setProperty("--pointer-y", `${Number(y) * 100}%`);
+            },
+            { passive: true }
+        );
+
+        button.addEventListener("pointerleave", () => {
+            button.style.removeProperty("--pointer-x");
+            button.style.removeProperty("--pointer-y");
+        });
+    });
+}
+
+if (heroSection && !prefersReducedMotion.matches && finePointer.matches && !useLiteEffects) {
+    let pendingFrame = 0;
+    let heroBounds = null;
+    let pointerX = 0.5;
+    let pointerY = 0.5;
+    let renderedX = 0.5;
+    let renderedY = 0.5;
+
+    function clampUnit(value) {
+        return Math.max(0, Math.min(1, value));
+    }
+
+    function refreshHeroBounds() {
+        heroBounds = heroSection.getBoundingClientRect();
+    }
+
+    function invalidateHeroBounds() {
+        heroBounds = null;
+    }
+
+    function setHeroPointer(x, y) {
+        heroSection.style.setProperty("--pointer-x", x.toFixed(3));
+        heroSection.style.setProperty("--pointer-y", y.toFixed(3));
+    }
+
+    function scheduleHeroPointerUpdate() {
+        if (pendingFrame) {
+            return;
+        }
+
+        pendingFrame = requestAnimationFrame(() => {
+            pendingFrame = 0;
+
+            if (Math.abs(pointerX - renderedX) < 0.006 && Math.abs(pointerY - renderedY) < 0.006) {
+                return;
+            }
+
+            renderedX = pointerX;
+            renderedY = pointerY;
+            setHeroPointer(renderedX, renderedY);
+        });
+    }
+
+    heroSection.addEventListener("pointerenter", refreshHeroBounds, { passive: true });
+
+    heroSection.addEventListener(
+        "pointermove",
+        (event) => {
+            if (!heroBounds) {
+                refreshHeroBounds();
+            }
+
+            pointerX = clampUnit((event.clientX - heroBounds.left) / heroBounds.width);
+            pointerY = clampUnit((event.clientY - heroBounds.top) / heroBounds.height);
+            scheduleHeroPointerUpdate();
+        },
+        { passive: true }
+    );
+
+    heroSection.addEventListener("pointerleave", () => {
+        if (pendingFrame) {
+            cancelAnimationFrame(pendingFrame);
+            pendingFrame = 0;
+        }
+
+        pointerX = 0.5;
+        pointerY = 0.5;
+        renderedX = 0.5;
+        renderedY = 0.5;
+        setHeroPointer(renderedX, renderedY);
+    });
+
+    window.addEventListener("resize", invalidateHeroBounds, { passive: true });
+    window.addEventListener("scroll", invalidateHeroBounds, { passive: true });
+}
+
+    </script>
+</body>
+</html>
